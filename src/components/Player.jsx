@@ -36,27 +36,13 @@ export const Player = ({
                 <p>End Time</p>
             </div>
             <div className="play-control">
-                <FaStepBackward
-                    onClick={previousSong}
-                    className="skip-backward-button"
-                    size="18px"
-                />
+                <FaStepBackward onClick={previousSong} />
                 {status === 'PAUSED' ? (
-                    <FaPlay
-                        onClick={toggleSong}
-                        className="toggle-song-button"
-                    />
+                    <FaPlay onClick={toggleSong} />
                 ) : (
-                    <FaPause
-                        onClick={toggleSong}
-                        className="toggle-song-button"
-                    />
+                    <FaPause onClick={toggleSong} />
                 )}
-                <FaStepForward
-                    onClick={nextSong}
-                    className="skip-forward-button"
-                    size="18px"
-                />
+                <FaStepForward onClick={nextSong} />
             </div>
             <audio ref={audioRef} src={currentSong.audio} />
         </div>
