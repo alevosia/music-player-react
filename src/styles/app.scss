@@ -3,3 +3,20 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+h1,
+h2,
+h3 {
+    color: rgb(54, 54, 54);
+}
+
+.app {
+    padding: 15px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@import './player';
+@import './song';
