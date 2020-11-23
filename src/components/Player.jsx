@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FaPlay, FaPause, FaStepBackward, FaStepForward } from 'react-icons/fa'
+import { formatTime } from '../utils/formatTime'
 
 export const Player = ({
     currentSong,
@@ -8,9 +9,16 @@ export const Player = ({
     previousSong,
     nextSong,
 }) => {
+    const [songInfo, setSongInfo] = useState({
+        currentTime: null,
+        duration: null,
+    })
+
     const audioRef = useRef(null)
     const rangeRef = useRef(null)
 
+    // Toggles the status between PAUSED and PLAYING
+    // and plays/pauses the audio
     function toggleSong() {
         if (audioRef.current) {
             if (status === 'PAUSED') {
@@ -23,12 +31,23 @@ export const Player = ({
         }
     }
 
-    function updateRange(event) {
-        if (rangeRef.current) {
-            const { duration, currentTime } = event.target
-            rangeRef.current.value = (currentTime / duration) * 100
-        }
+    // Update the state whenever currentTime changes
+    function handleTimeUpdate(event) {
+        const { currentTime, duration } = event.target
+
+        setSongInfo({
+            currentTime,
+            duration,
+        })
     }
+
+    // Whenever the songInfo changes, update the range slider
+    useEffect(() => {
+        if (rangeRef.current) {
+            rangeRef.current.value =
+                (songInfo.currentTime / songInfo.duration) * 100
+        }
+    }, [songInfo])
 
     // Whenever the current song changes and the status is playing
     // automatically play the new song
@@ -38,17 +57,10 @@ export const Player = ({
         }
     }, [status, currentSong])
 
-    // Whenever the current song changes, set the range's value to zero
-    useEffect(() => {
-        if (rangeRef.current) {
-            rangeRef.current.value = 0
-        }
-    }, [currentSong])
-
     return (
         <div className="player">
             <div className="time-control">
-                <p>Start Time</p>
+                <p>{formatTime(songInfo.currentTime)}</p>
                 <input
                     type="range"
                     min="0"
@@ -56,7 +68,7 @@ export const Player = ({
                     defaultValue="0"
                     ref={rangeRef}
                 />
-                <p>End Time</p>
+                <p>{formatTime(songInfo.duration)}</p>
             </div>
             <div className="play-control">
                 <FaStepBackward onClick={previousSong} />
@@ -71,7 +83,7 @@ export const Player = ({
                 ref={audioRef}
                 src={currentSong.audio}
                 onEnded={nextSong}
-                onTimeUpdate={updateRange}
+                onTimeUpdate={handleTimeUpdate}
             />
         </div>
     )
