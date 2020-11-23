@@ -4,10 +4,10 @@ import { formatTime } from '../utils/formatTime'
 
 export const Player = ({
     currentSong,
-    status,
-    setStatus,
     previousSong,
     nextSong,
+    status,
+    setStatus,
 }) => {
     const [songInfo, setSongInfo] = useState({
         currentTime: 0,
@@ -18,7 +18,7 @@ export const Player = ({
 
     // Toggles the status between PAUSED and PLAYING
     // and plays/pauses the audio
-    function toggleSong() {
+    function toggleStatus() {
         if (audioRef.current) {
             if (status === 'PAUSED') {
                 audioRef.current.play()
@@ -72,15 +72,15 @@ export const Player = ({
             <div className="play-control">
                 <FaStepBackward onClick={previousSong} />
                 {status === 'PAUSED' ? (
-                    <FaPlay onClick={toggleSong} />
+                    <FaPlay onClick={toggleStatus} />
                 ) : (
-                    <FaPause onClick={toggleSong} />
+                    <FaPause onClick={toggleStatus} />
                 )}
                 <FaStepForward onClick={nextSong} />
             </div>
             <audio
                 ref={audioRef}
-                src={currentSong.audio}
+                src={currentSong?.audio}
                 onEnded={nextSong}
                 onTimeUpdate={updateSongInfo}
                 onLoadedData={updateSongInfo}
