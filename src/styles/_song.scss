@@ -4,33 +4,33 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
 
-.song-cover {
-    height: 300px;
-    width: 300px;
-    border-radius: 50%;
-    overflow: hidden;
+    .song-cover {
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        overflow: hidden;
 
-    img {
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-        animation: spin linear 60s infinite forwards;
-        animation-play-state: paused;
+        img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            animation: spin linear 60s infinite forwards;
+            animation-play-state: paused;
 
-        &.spinning {
-            animation-play-state: running;
+            &.spinning {
+                animation-play-state: running;
+            }
         }
     }
-}
 
-.song-name {
-    padding: 3rem 1rem 1rem 1rem;
-}
+    .song-name {
+        padding: 3rem 1rem 1rem 1rem;
+    }
 
-.song-artist {
-    font-size: 1rem;
+    .song-artist {
+        font-size: 1rem;
+    }
 }
 
 @keyframes spin {

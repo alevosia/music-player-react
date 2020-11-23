@@ -2,12 +2,43 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(155, 155, 155, 0.5) transparent !important;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        cursor: pointer;
+        background-color: rgba(155, 155, 155, 0.5) !important;
+
+        &:hover {
+            background-color: rgba(155, 155, 155, 0.8) !important;
+        }
+    }
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
 }
 
 h1,
 h2,
 h3 {
     color: rgb(54, 54, 54);
+}
+
+h3,
+h4 {
+    font-weight: 400;
+    color: rgba(100, 100, 100);
 }
 
 .app {
@@ -18,5 +49,11 @@ h3 {
     justify-content: center;
 }
 
+main {
+    width: 75vw;
+    margin-left: 25vw;
+}
+
 @import './player';
 @import './song';
+@import './library';
