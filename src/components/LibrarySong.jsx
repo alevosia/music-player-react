@@ -1,11 +1,11 @@
-export const LibrarySong = ({ song, playing, setCurrentSongId }) => {
+export const LibrarySong = ({ song, isCurrent, setCurrentSongId }) => {
     function selectSong() {
         setCurrentSongId(song.id)
     }
 
     return (
         <div
-            className={`library-song ${playing && 'playing'}`}
+            className={`library-song ${isCurrent ? 'playing' : ''}`}
             onClick={selectSong}
         >
             <div className="song-cover">

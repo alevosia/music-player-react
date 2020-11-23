@@ -10,7 +10,7 @@ export const Library = ({ songs, currentSongId, setCurrentSongId }) => {
                           <LibrarySong
                               key={song.id}
                               song={song}
-                              playing={song.id === currentSongId}
+                              isCurrent={song.id === currentSongId}
                               setCurrentSongId={setCurrentSongId}
                           />
                       ))
