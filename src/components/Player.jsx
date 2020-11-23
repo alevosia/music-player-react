@@ -39,7 +39,7 @@ export const Player = ({
     }
 
     // Update the state whenever currentTime changes
-    function handleTimeUpdate(event) {
+    function updateSongInfo(event) {
         const { currentTime, duration } = event.target
 
         setSongInfo({
@@ -82,8 +82,8 @@ export const Player = ({
                 ref={audioRef}
                 src={currentSong.audio}
                 onEnded={nextSong}
-                onTimeUpdate={handleTimeUpdate}
-                onLoadedData={handleTimeUpdate}
+                onTimeUpdate={updateSongInfo}
+                onLoadedData={updateSongInfo}
                 preload="true"
             />
         </div>
