@@ -8,8 +8,8 @@ export const Player = ({
     previousSong,
     nextSong,
 }) => {
-    const audioRef = useRef()
-    const rangeRef = useRef()
+    const audioRef = useRef(null)
+    const rangeRef = useRef(null)
 
     function toggleSong() {
         if (audioRef.current) {
