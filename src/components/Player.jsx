@@ -10,12 +10,11 @@ export const Player = ({
     nextSong,
 }) => {
     const [songInfo, setSongInfo] = useState({
-        currentTime: null,
-        duration: null,
+        currentTime: 0,
+        duration: 0,
     })
 
     const audioRef = useRef(null)
-    const rangeRef = useRef(null)
 
     // Toggles the status between PAUSED and PLAYING
     // and plays/pauses the audio
@@ -31,23 +30,23 @@ export const Player = ({
         }
     }
 
+    function seek(event) {
+        const { value } = event.target
+
+        if (audioRef.current) {
+            audioRef.current.currentTime = value
+        }
+    }
+
     // Update the state whenever currentTime changes
     function handleTimeUpdate(event) {
         const { currentTime, duration } = event.target
 
         setSongInfo({
-            currentTime,
-            duration,
+            currentTime: currentTime || 0,
+            duration: duration || 0,
         })
     }
-
-    // Whenever the songInfo changes, update the range slider
-    useEffect(() => {
-        if (rangeRef.current) {
-            rangeRef.current.value =
-                (songInfo.currentTime / songInfo.duration) * 100
-        }
-    }, [songInfo])
 
     // Whenever the current song changes and the status is playing
     // automatically play the new song
@@ -63,10 +62,10 @@ export const Player = ({
                 <p>{formatTime(songInfo.currentTime)}</p>
                 <input
                     type="range"
-                    min="0"
-                    max="100"
-                    defaultValue="0"
-                    ref={rangeRef}
+                    min={0}
+                    max={songInfo.duration}
+                    value={songInfo.currentTime}
+                    onChange={seek}
                 />
                 <p>{formatTime(songInfo.duration)}</p>
             </div>
@@ -84,6 +83,8 @@ export const Player = ({
                 src={currentSong.audio}
                 onEnded={nextSong}
                 onTimeUpdate={handleTimeUpdate}
+                onLoadedData={handleTimeUpdate}
+                preload="true"
             />
         </div>
     )
