@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react'
-import { Library } from './components/Library'
 import { Nav } from './components/Nav'
-import { Player } from './components/Player'
+import { Library } from './components/Library'
 import { Song } from './components/Song'
-import './styles/app.scss'
+import { Player } from './components/Player'
 import { generateSongs } from './utils/generateSongs'
+
+import './styles/app.scss'
 
 function App() {
     const [songs] = useState(generateSongs())
