@@ -71,10 +71,10 @@ export const Player = ({
         }
     }
 
-    // Whenever the current song changes
-    // and the status is playing, automatically play the new song
+    // Automatically play the song whenever the status
+    // or current song changes
     useEffect(() => {
-        if (status === 'PLAYING' && audioRef.current.paused) {
+        if (status === 'PLAYING' && audioRef.current?.paused) {
             audioRef.current.play()
         }
     }, [status, currentSong])
