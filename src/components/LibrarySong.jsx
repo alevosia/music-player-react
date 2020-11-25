@@ -1,12 +1,8 @@
 export const LibrarySong = ({ song, isCurrent, setCurrentSongId }) => {
-    function selectSong() {
-        setCurrentSongId(song.id)
-    }
-
     return (
         <div
             className={`library-song ${isCurrent ? 'playing' : ''}`}
-            onClick={selectSong}
+            onClick={() => setCurrentSongId(song.id)}
         >
             <div className="song-cover">
                 <img src={song.cover} alt={song.name} />
