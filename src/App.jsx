@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Library } from './components/Library'
+import { Nav } from './components/Nav'
 import { Player } from './components/Player'
 import { Song } from './components/Song'
 import './styles/app.scss'
@@ -9,6 +10,7 @@ function App() {
     const [songs] = useState(generateSongs())
     const [currentSongId, setCurrentSongId] = useState(songs[0].id)
     const [status, setStatus] = useState('PAUSED')
+    const [isLibraryOpen, setIsLibraryOpen] = useState(false)
 
     const currentSong = useMemo(
         () => songs.find((s) => s.id === currentSongId),
@@ -39,7 +41,11 @@ function App() {
 
     return (
         <div className="app">
-            <main>
+            <Nav
+                isLibraryOpen={isLibraryOpen}
+                setIsLibraryOpen={setIsLibraryOpen}
+            />
+            <main className={`${isLibraryOpen ? 'squeezed' : ''}`}>
                 <Song song={currentSong} status={status} />
                 <Player
                     currentSong={currentSong}
@@ -53,6 +59,7 @@ function App() {
                 songs={songs}
                 currentSongId={currentSongId}
                 setCurrentSongId={setCurrentSongId}
+                isLibraryOpen={isLibraryOpen}
             />
         </div>
     )

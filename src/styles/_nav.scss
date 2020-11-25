@@ -1,0 +1,32 @@
+nav {
+    min-height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100vw;
+    transition: all ease 0.5s;
+
+    &.squeezed {
+        width: 75vw;
+        margin-left: 25vw;
+    }
+
+    button {
+        cursor: pointer;
+        background: transparent;
+        border: 2px solid rgb(65, 65, 65);
+        padding: 0.5rem;
+        transition: all 0.3s ease;
+
+        &.open,
+        &:hover {
+            background-color: rgb(65, 65, 65);
+            color: white;
+        }
+
+        svg {
+            margin-right: 5px;
+        }
+    }
+}

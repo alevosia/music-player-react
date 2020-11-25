@@ -50,10 +50,16 @@ h4 {
 }
 
 main {
-    width: 75vw;
-    margin-left: 25vw;
+    width: 100vw;
+    transition: all ease 0.5s;
+
+    &.squeezed {
+        width: 75vw;
+        margin-left: 25vw;
+    }
 }
 
 @import './player';
 @import './song';
 @import './library';
+@import './nav';

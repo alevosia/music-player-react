@@ -1,9 +1,13 @@
 import { LibrarySong } from './LibrarySong'
 
-export const Library = ({ songs, currentSongId, setCurrentSongId }) => {
+export const Library = ({
+    songs,
+    isLibraryOpen,
+    currentSongId,
+    setCurrentSongId,
+}) => {
     return (
-        <div className="library">
-            <h2>Library</h2>
+        <div className={`library ${isLibraryOpen ? 'open' : ''}`}>
             <div className="library-songs">
                 {songs && songs.length > 0
                     ? songs.map((song) => (
