@@ -83,13 +83,23 @@ export const Player = ({
         <div className="player">
             <div className="time-control">
                 <p>{formatTime(songInfo.currentTime)}</p>
-                <input
-                    type="range"
-                    min={0}
-                    max={songInfo.duration}
-                    value={songInfo.currentTime}
-                    onChange={seek}
-                />
+                <div className="track">
+                    <input
+                        type="range"
+                        min={0}
+                        max={songInfo.duration}
+                        value={songInfo.currentTime}
+                        onChange={seek}
+                    />
+                    <div
+                        className="animated-track"
+                        style={{
+                            transform: `translateX(${
+                                (songInfo.currentTime / songInfo.duration) * 100
+                            }%)`,
+                        }}
+                    ></div>
+                </div>
                 <p>{formatTime(songInfo.duration)}</p>
             </div>
             <div className="play-control">
