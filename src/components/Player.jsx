@@ -83,7 +83,12 @@ export const Player = ({
         <div className="player">
             <div className="time-control">
                 <p>{formatTime(songInfo.currentTime)}</p>
-                <div className="track">
+                <div
+                    className="track"
+                    style={{
+                        background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]} )`,
+                    }}
+                >
                     <input
                         type="range"
                         min={0}
