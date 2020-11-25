@@ -11,6 +11,10 @@
     display: flex;
     height: 1rem;
 
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+
     .track {
         position: relative;
         width: 100%;
@@ -68,5 +72,9 @@
         cursor: pointer;
         width: 24px;
         height: 24px;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 75%;
     }
 }
