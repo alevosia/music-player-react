@@ -2,9 +2,9 @@ import { LibrarySong } from './LibrarySong'
 
 export const Library = ({
     songs,
-    isLibraryOpen,
     currentSongId,
     setCurrentSongId,
+    isLibraryOpen,
 }) => {
     return (
         <div className={`library ${isLibraryOpen ? 'open' : ''}`}>

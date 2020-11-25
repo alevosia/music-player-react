@@ -3,9 +3,9 @@ import { FaPlay, FaPause, FaStepBackward, FaStepForward } from 'react-icons/fa'
 import { formatTime } from '../utils/formatTime'
 
 export const Player = ({
+    songs,
     currentSong,
-    previousSong,
-    nextSong,
+    setCurrentSongId,
     status,
     setStatus,
 }) => {
@@ -30,6 +30,7 @@ export const Player = ({
         }
     }
 
+    // Moves the currentTime whenever the slider is dragged
     function seek(event) {
         const { value } = event.target
 
@@ -46,6 +47,28 @@ export const Player = ({
             currentTime: currentTime || 0,
             duration: duration || 0,
         })
+    }
+
+    // Set the currentSongId to the id of the song previous of the current song
+    function previousSong() {
+        const currentSongIndex = songs.findIndex((s) => s.id === currentSong.id)
+
+        if (currentSongIndex !== 0) {
+            setCurrentSongId(songs[currentSongIndex - 1].id)
+        } else {
+            setCurrentSongId(songs[songs.length - 1].id)
+        }
+    }
+
+    // Set the currentSongId to the id of the song next of the current song
+    function nextSong() {
+        const currentSongIndex = songs.findIndex((s) => s.id === currentSong.id)
+
+        if (currentSongIndex < songs.length - 1) {
+            setCurrentSongId(songs[currentSongIndex + 1].id)
+        } else {
+            setCurrentSongId(songs[0].id)
+        }
     }
 
     // Whenever the current song changes

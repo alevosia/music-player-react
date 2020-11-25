@@ -12,32 +12,11 @@ function App() {
     const [status, setStatus] = useState('PAUSED')
     const [isLibraryOpen, setIsLibraryOpen] = useState(false)
 
+    // Gets the current song using the currentSongId
     const currentSong = useMemo(
         () => songs.find((s) => s.id === currentSongId),
         [songs, currentSongId]
     )
-
-    // Set the currentSongId to the id of the song previous of the current song
-    function previousSong() {
-        const currentSongIndex = songs.findIndex((s) => s.id === currentSongId)
-
-        if (currentSongIndex !== 0) {
-            setCurrentSongId(songs[currentSongIndex - 1].id)
-        } else {
-            setCurrentSongId(songs[songs.length - 1].id)
-        }
-    }
-
-    // Set the currentSongId to the id of the song next of the current song
-    function nextSong() {
-        const currentSongIndex = songs.findIndex((s) => s.id === currentSongId)
-
-        if (currentSongIndex < songs.length - 1) {
-            setCurrentSongId(songs[currentSongIndex + 1].id)
-        } else {
-            setCurrentSongId(songs[0].id)
-        }
-    }
 
     return (
         <div className="app">
@@ -48,9 +27,9 @@ function App() {
             <main className={`${isLibraryOpen ? 'squeezed' : ''}`}>
                 <Song song={currentSong} status={status} />
                 <Player
+                    songs={songs}
                     currentSong={currentSong}
-                    previousSong={previousSong}
-                    nextSong={nextSong}
+                    setCurrentSongId={setCurrentSongId}
                     status={status}
                     setStatus={setStatus}
                 />
